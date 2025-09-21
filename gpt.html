@@ -9,20 +9,143 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
     }
+
+    /* HEADER */
     header {
-      background: #333;
+      background: #222;
       color: white;
-      padding: 1rem;
+      padding: 1rem 2rem;
       text-align: center;
     }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 10px;
+      margin: 0 12px;
+      font-weight: bold;
+      transition: color 0.3s;
     }
+
     nav a:hover {
       color: orange;
+    }
+
+    /* HERO */
+    .hero {
+      background: url("home-foto.jpg") no-repeat center center/cover;
+      text-align: center;
+      color: white;
+      padding: 100px 20px;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+
+    .hero button {
+      background: orange;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .hero button:hover {
+      background: darkorange;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: #222;
+    }
+
+    .services, .team, .gallery {
+      display: grid;
+      gap: 20px;
+    }
+
+    .services {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .service, .member, .photo {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .gallery {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    /* FORM */
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    form button {
+      background: orange;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    form button:hover {
+      background: darkorange;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    footer a {
+      color: orange;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -37,12 +160,10 @@
     <a href="#about">Over Ons</a>
     <a href="#gallery">Galerij</a>
     <a href="#contact">Contact</a>
-    <a href="scooter-problemen.html">Scooterproblemen & onderhoud</a>
-    <a href="scooter-tuning.html">Tuning & opvoeren</a>
+    <a href="scooter-problemen.html">Scooterproblemen</a>
+    <a href="scooter-tuning.html">Tuning</a>
   </nav>
 </header>
-
-<img src="home-foto.jpg" alt="Home Foto" width="600" style="display:block; margin:auto;">
 
 <section class="hero" id="home">
   <h2>Optimaliseer je scooter, beleef de snelheid!</h2>
@@ -50,7 +171,7 @@
 </section>
 
 <section id="services">
-  <h2 style="text-align:center;">Onze Diensten</h2>
+  <h2>Onze Diensten</h2>
   <div class="services">
     <div class="service">
       <h3>Scooter Onderhoud</h3>
@@ -68,9 +189,9 @@
 </section>
 
 <section id="about">
-  <h2 style="text-align:center;">Over GPT Performance</h2>
-  <p style="max-width:800px;margin:0 auto;text-align:center;">
-    GPT Performance is jouw specialist in scooter onderhoud en opvoeren. Wij hebben ervaring met 2- en 4-takt scooters en zorgen dat jouw voertuig altijd top presteert. We zijn juist begonnen bedrijf en doen scooter onderhoud bij de klant. Binnenkort hebben we een eigen locatie.
+  <h2>Over GPT Performance</h2>
+  <p style="text-align:center; max-width:800px; margin:auto;">
+    GPT Performance is jouw specialist in scooter onderhoud en opvoeren. Wij hebben ervaring met 2- en 4-takt scooters en zorgen dat jouw voertuig altijd top presteert. We zijn een startend bedrijf dat onderhoud bij de klant uitvoert. Binnenkort openen we een eigen locatie.
   </p>
   <div class="team">
     <div class="member">
@@ -78,25 +199,25 @@
       <p>Hoofdmonteur, expert 2-takt scooters</p>
     </div>
     <div class="member">
-      <h3></h3>
-      <p>Tuning</p>
+      <h3>Tuning Expert</h3>
+      <p>Specialist in scooter performance upgrades</p>
     </div>
   </div>
 </section>
 
 <section id="gallery">
-  <h2 style="text-align:center;">Galerij</h2>
+  <h2>Galerij</h2>
   <div class="gallery">
-    <div class="photo"><img src="foto.jpg" alt="Scooter" style="width:100%; border-radius:10px;"></div>
-    <div class="photo"><img src="https://images.unsplash.com/photo-1612874740257-0f2340c76334" alt="Werkplaats" style="width:100%; border-radius:10px;"></div>
-    <div class="photo"><img src="https://images.unsplash.com/photo-1605553295619-f0a4b50aa6e6" alt="Scooter tuning" style="width:100%; border-radius:10px;"></div>
+    <div class="photo"><img src="foto.jpg" alt="Scooter"></div>
+    <div class="photo"><img src="https://images.unsplash.com/photo-1612874740257-0f2340c76334" alt="Werkplaats"></div>
+    <div class="photo"><img src="https://images.unsplash.com/photo-1605553295619-f0a4b50aa6e6" alt="Scooter tuning"></div>
   </div>
 </section>
 
 <section id="contact">
-  <h2 style="text-align:center;">Contact</h2>
-  <p style="text-align:center;">Adres: Jouw Straat 123, 1234 AB Stad | Telefoon: +3247064664 | Email: gptperformance7@gmail.com</p>
-  <form style="max-width:600px;margin:20px auto;">
+  <h2>Contact</h2>
+  <p style="text-align:center;">Adres: Jouw Straat 123, 1234 AB Stad | Telefoon: +32 470 646 64 | Email: gptperformance7@gmail.com</p>
+  <form>
     <input type="text" placeholder="Naam" required>
     <input type="email" placeholder="Email" required>
     <textarea placeholder="Bericht" rows="5" required></textarea>
@@ -106,24 +227,8 @@
 
 <footer>
   <p>&copy; 2025 GPT Performance. Alle rechten voorbehouden.</p>
-  <p>Volg ons op: <a href="#" style="color:#ff6600;">Facebook</a> | <a href="#" style="color:#ff6600;">Instagram</a></p>
+  <p>Volg ons op: <a href="#">Facebook</a> | <a href="#">Instagram</a></p>
 </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
