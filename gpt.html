@@ -3,141 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GPT Performance - Scooter Onderhoud & Tuning</title>
+<title>GPT Performance - Scooter Tuning</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  /* Algemeen */
-  body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    color: #333;
-  }
+/* Algemeen */
+body { font-family:'Orbitron',sans-serif; background:#111; color:#eee; margin:0; padding:0; }
+a { color:#00ff85; text-decoration:none; transition:0.3s; }
+a:hover { color:#0f0; }
 
-  a {
-    color: #4CAF50;
-    text-decoration: none;
-  }
-  a:hover { text-decoration: underline; }
+/* Header */
+header { background:#000; padding:20px 0; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.7); }
+header h1 { margin:0; font-size:2.5rem; color:#00ff85; letter-spacing:2px; }
+nav { margin-top:10px; }
+nav a { margin:0 15px; color:#fff; font-weight:bold; transition:0.3s; }
+nav a:hover { color:#00ff85; }
 
-  /* Header / Navigatie */
-  header {
-    background: #222;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-  }
-  header h1 { margin: 0; font-size: 2.2rem; }
-  nav { margin-top: 10px; }
-  nav a { margin: 0 15px; color: white; font-weight: bold; }
+/* Hero */
+.hero { background:url("home-foto.jpg") no-repeat center center/cover; height:450px; display:flex; justify-content:center; align-items:center; text-align:center; position:relative; overflow:hidden; }
+.hero::after { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); }
+.hero-content { position:relative; z-index:1; }
+.hero h2 { font-size:3rem; color:#00ff85; text-shadow:2px 2px 10px #000; margin-bottom:20px; }
+.hero button { background: linear-gradient(45deg,#00ff85,#00a3ff); color:white; border:none; padding:15px 30px; border-radius:8px; font-size:1.2rem; cursor:pointer; transition:0.3s; }
+.hero button:hover { transform:scale(1.05); box-shadow:0 0 20px #00ff85; }
 
-  /* Hero */
-  .hero {
-    background: url("home-foto.jpg") no-repeat center center/cover;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    position: relative;
-  }
-  .hero::after {
-    content: "";
-    position: absolute;
-    top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.4);
-  }
-  .hero-content { position: relative; z-index: 1; }
-  .hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  }
-  .hero button {
-    background: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1rem;
-  }
-  .hero button:hover { background: #45a049; }
+/* Container & Secties */
+.container { max-width:1100px; margin:40px auto; padding:0 20px; }
+section { margin-bottom:60px; }
+h2 { color:#00ff85; margin-bottom:20px; border-bottom:2px solid #00ff85; display:inline-block; padding-bottom:5px; }
+ul { line-height:1.8; margin-left:20px; }
 
-  /* Secties */
-  .container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-  section { margin-bottom: 50px; }
-  h2 {
-    color: #4CAF50;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #4CAF50;
-    display: inline-block;
-    padding-bottom: 5px;
-  }
-  ul { line-height: 1.8; margin-left: 20px; }
+/* Diensten */
+.services { display:flex; flex-wrap:wrap; gap:20px; }
+.service { flex:1 1 300px; background:#1a1a1a; padding:25px; border-radius:10px; box-shadow:0 8px 20px rgba(0,255,133,0.2); transition:0.3s; }
+.service:hover { transform:translateY(-10px); box-shadow:0 12px 25px rgba(0,255,133,0.6); }
 
-  .services {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .service {
-    flex: 1 1 280px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-  }
-  .service:hover { transform: translateY(-5px); }
+/* Galerij */
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+.gallery img { width:100%; border-radius:12px; transition:0.3s; }
+.gallery img:hover { transform:scale(1.05); box-shadow:0 8px 20px rgba(0,255,133,0.5); }
+.gallery .photo p { text-align:center; margin-top:5px; font-style:italic; color:#aaa; }
 
-  /* Galerij */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+/* Contactformulier */
+form input, form textarea { width:100%; padding:14px; margin:10px 0; border-radius:8px; border:none; background:#222; color:#eee; box-sizing:border-box; }
+form input:focus, form textarea:focus { outline:none; box-shadow:0 0 10px #00ff85; }
+form button { background:linear-gradient(45deg,#00ff85,#00a3ff); color:white; border:none; padding:14px 25px; border-radius:8px; font-size:1.1rem; cursor:pointer; transition:0.3s; }
+form button:hover { transform:scale(1.05); box-shadow:0 0 20px #00ff85; }
 
-  /* Contactformulier */
-  form input, form textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  form button {
-    background: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  form button:hover { background: #45a049; }
+/* Footer */
+footer { text-align:center; padding:25px; background:#000; color:white; box-shadow:0 -4px 10px rgba(0,255,133,0.3);}
+footer a { color:#00ff85; margin:0 10px; }
 
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 20px;
-    background: #222;
-    color: white;
-  }
-
-  /* Responsive */
-  @media(max-width: 768px){
-    .services { flex-direction: column; }
-    .hero h2 { font-size: 1.8rem; }
-    .hero { height: 300px; }
-  }
+/* Responsive */
+@media(max-width:768px){
+  .services { flex-direction:column; }
+  .hero h2 { font-size:2rem; }
+  .hero { height:350px; }
+}
 </style>
 </head>
 <body>
@@ -151,7 +73,7 @@
     <a href="#gallery">Galerij</a>
     <a href="#contact">Contact</a>
     <a href="scooter-problemen.html">Scooterproblemen</a>
-    <a href="scooter.tuning.html">Tuning & Opvoeren</a>
+    <a href="scooter-tuning.html">Tuning & Opvoeren</a>
   </nav>
 </header>
 
@@ -180,67 +102,55 @@
         <p>Kies een onderhouds- of tuningpakket dat bij jou past. Vraag direct een offerte aan!</p>
       </div>
     </div>
-    <p style="margin-top:20px;">
-      <a href="scooter-problemen.html">Bekijk scooterproblemen & onderhoud →</a><br>
-      <a href="scooter-tuning.html">Alles over tuning & opvoeren →</a>
-    </p>
   </section>
 
   <section id="about">
     <h2>Over GPT Performance</h2>
-    <p>GPT Performance is jouw specialist in scooter onderhoud en opvoeren. Wij hebben ervaring met 2- en 4-takt scooters en zorgen dat jouw voertuig altijd top presteert. Onze monteurs werken professioneel en klantgericht.</p>
+    <p>GPT Performance is jouw specialist in scooter onderhoud en opvoeren. Onze monteurs werken professioneel en klantgericht.</p>
   </section>
 
   <section id="gallery">
     <h2>Galerij</h2>
     <div class="gallery">
-      <img src="foto.jpg" alt="Scooter">
-      <img src="" alt="Werkplaats">
-      <img src="tuning.jpg" alt="Scooter tuning">
+      <div class="photo">
+        <img src="werkplaats.jpg" alt="Scooter Werkplaats">
+        <p>Onze werkplaats</p>
+      </div>
+      <div class="photo">
+        <img src="scooter-tuning.jpg" alt="Scooter Tuning">
+        <p>Opgevoerde scooter</p>
+      </div>
+      <div class="photo">
+        <img src="scooter.jpg" alt="Scooter">
+        <p>Onze scooters</p>
+      </div>
     </div>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p style="text-align:center;">
-      Adres: Jouw Straat 123, 1234 AB Stad | Telefoon: +32 470 646 64
-    </p>
-
-    <!-- Contactformulier via Formspree -->
+    <p style="text-align:center;">Adres: Jouw Straat 123, 1234 AB Stad | Telefoon: +32 470 646 64</p>
     <form action="https://formspree.io/f/xblzrlzd" method="POST" style="max-width:600px; margin:20px auto;">
       <input type="text" name="name" placeholder="Naam" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <textarea name="message" placeholder="Bericht" rows="5" required></textarea>
       <button type="submit">Verstuur</button>
     </form>
-    <p style="text-align:center;"><em>Je bericht wordt direct naar ons e-mailadres gestuurd via Formspree.</em></p>
   </section>
 
 </div>
 
-<!-- Voeg in <head> toe voor de iconen -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<!-- Footer -->
 <footer>
   <p>&copy; 2025 GPT Performance. Alle rechten voorbehouden.</p>
   <p>
     Volg ons op: 
-    <a href="https://www.facebook.com/Gijs Huijer" target="_blank">
-      <i class="fab fa-facebook-square" style="font-size:24px;color:#3b5998;margin-right:10px;"></i>
-    </a>
-    <a href="https://www.instagram.com/jouwpagina" target="_blank">
-      <i class="fab fa-instagram" style="font-size:24px;color:#E1306C;"></i>
-    </a>
+    <a href="https://www.facebook.com/jouwfacebook" target="_blank"><i class="fab fa-facebook-square" style="font-size:24px;"></i></a>
+    <a href="https://www.instagram.com/jouwinstagram" target="_blank"><i class="fab fa-instagram" style="font-size:24px;"></i></a>
   </p>
 </footer>
 
-
 </body>
 </html>
-
-
-
 
 
 
