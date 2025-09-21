@@ -1,74 +1,140 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <title>Scooter Onderhoud & Prijzen</title>
-  <style>
-    body { font-family: Arial, sans-serif; background:#f9f9f9; margin:0; padding:20px; }
-    .container { max-width: 900px; margin: auto; background:#fff; padding:20px; border-radius:8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    h1, h2 { color:#333; }
-    h2 { margin-top:25px; color:#4CAF50; }
-    table { width:100%; border-collapse: collapse; margin-top:10px; }
-    table th, table td { border:1px solid #ddd; padding:10px; text-align:left; }
-    table th { background:#f4f4f4; }
-    img { width:100%; max-width:600px; display:block; margin: 0 auto 20px auto; border-radius:8px; }
-    a { color:#4CAF50; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Officiële Scooter Onderhoud Prijzen</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Arial', sans-serif; background: #f4f7f9; margin:0; padding:0; color:#333; line-height:1.6; }
+  a { color:#4CAF50; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+
+  .container { max-width: 1000px; margin:auto; padding:20px; background:#fff; border-radius:10px; box-shadow:0 6px 15px rgba(0,0,0,0.1); }
+
+  h1 { text-align:center; color:#2E7D32; margin-bottom:20px; }
+  h2 { margin-top:35px; display:flex; align-items:center; gap:10px; padding-bottom:5px; }
+
+  .icon { width:28px; height:28px; }
+  .icon-base { fill:#FFB300; }      /* Oranje voor basis onderhoud */
+  .icon-period { fill:#1976D2; }    /* Blauw voor periodiek */
+  .icon-large { fill:#D32F2F; }     /* Rood voor groot onderhoud */
+  .icon-extra { fill:#388E3C; }     /* Groen voor extra/comfort */
+
+  img { width:100%; max-width:700px; display:block; margin: 20px auto; border-radius:10px; }
+
+  table { width:100%; border-collapse: collapse; margin-top:10px; display: block; overflow-x:auto; }
+  th, td { border:1px solid #ddd; padding:12px 15px; text-align:left; min-width:120px; }
+  th { background:#f0f0f0; color:#333; }
+  tr:hover { background:#f1f8e9; }
+  td.price { color:#2E7D32; font-weight:bold; }
+
+  #topBtn {
+    display:none;
+    position:fixed;
+    bottom:40px;
+    right:40px;
+    z-index:99;
+    border:none;
+    outline:none;
+    background-color:#4CAF50;
+    color:white;
+    cursor:pointer;
+    padding:12px 16px;
+    border-radius:50px;
+    font-size:16px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+  }
+  #topBtn:hover { background-color:#45a049; }
+
+  @media (max-width:768px){
+    .container { padding:15px; }
+    th, td { padding:10px; }
+  }
+</style>
 </head>
 <body>
 
-<div class="container">
-  <h1>Scooter onderhoud & prijzen</h1>
-  <img src="scooter.jpg" alt="Scooter in de werkplaats">
+<div class="container" id="top">
 
-  <h2>Basis onderhoud</h2>
-  <table>
-    <tr><th>Onderdeel</th><th>Prijs (€)</th></tr>
-    <tr><td>Olie verversen</td><td>30 - 50</td></tr>
-    <tr><td>Bougie vervangen</td><td>15 - 25</td></tr>
-    <tr><td>Luchtfilter vervangen</td><td>20 - 35</td></tr>
-    <tr><td>Bandenspanning / controle</td><td>10 - 15</td></tr>
-    <tr><td>Accu opladen / controleren</td><td>15 - 30</td></tr>
-    <tr><td>Remmen afstellen</td><td>20 - 35</td></tr>
-    <tr><td>Remblokken vervangen</td><td>40 - 70</td></tr>
-  </table>
+<h1>Officiële Scooter Onderhoud Prijzen</h1>
+<img src="scooter.jpg" alt="Scooter in de werkplaats">
 
-  <h2>Periodiek onderhoud</h2>
-  <table>
-    <tr><th>Onderdeel</th><th>Prijs (€)</th></tr>
-    <tr><td>V-snaar vervangen</td><td>70 - 120</td></tr>
-    <tr><td>Variateur rollen vervangen</td><td>50 - 90</td></tr>
-    <tr><td>Kleppen afstellen (4-takt)</td><td>60 - 100</td></tr>
-    <tr><td>Carburateur reinigen</td><td>50 - 80</td></tr>
-    <tr><td>Injectiesysteem check</td><td>60 - 90</td></tr>
-    <tr><td>Koelvloeistof vervangen</td><td>40 - 60</td></tr>
-    <tr><td>Zekeringen vervangen</td><td>10 - 20</td></tr>
-  </table>
+<h2>
+  <svg class="icon icon-base" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L15 8H9L12 2ZM4 10H20V20H4V10Z"/></svg>
+  Basis onderhoud
+</h2>
+<table>
+<tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
+<tr><td>Olie verversen</td><td class="price">40</td></tr>
+<tr><td>Bougie vervangen</td><td class="price">20</td></tr>
+<tr><td>Luchtfilter vervangen</td><td class="price">30</td></tr>
+<tr><td>Bandenspanning / controle</td><td class="price">12</td></tr>
+<tr><td>Accu opladen / controleren</td><td class="price">25</td></tr>
+<tr><td>Remmen afstellen</td><td class="price">30</td></tr>
+<tr><td>Remblokken vervangen</td><td class="price">55</td></tr>
+</table>
 
-  <h2>Groot onderhoud</h2>
-  <table>
-    <tr><th>Onderdeel</th><th>Prijs (€)</th></tr>
-    <tr><td>Jaarlijkse grote beurt</td><td>150 - 250</td></tr>
-    <tr><td>Compressietest motor</td><td>40 - 60</td></tr>
-    <tr><td>Volledige carburateur/injectie service</td><td>100 - 160</td></tr>
-    <tr><td>Wiel- en balhoofdlagers vervangen</td><td>120 - 180</td></tr>
-    <tr><td>Schokbrekers vervangen (set)</td><td>150 - 250</td></tr>
-  </table>
+<h2>
+  <svg class="icon icon-period" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1Zm1 17h-2v-6h2Zm0-8h-2V7h2Z"/></svg>
+  Periodiek onderhoud
+</h2>
+<table>
+<tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
+<tr><td>V-snaar vervangen</td><td class="price">95</td></tr>
+<tr><td>Variateur rollen vervangen</td><td class="price">70</td></tr>
+<tr><td>Kleppen afstellen (4-takt)</td><td class="price">80</td></tr>
+<tr><td>Carburateur reinigen</td><td class="price">65</td></tr>
+<tr><td>Injectiesysteem check</td><td class="price">75</td></tr>
+<tr><td>Koelvloeistof vervangen</td><td class="price">50</td></tr>
+<tr><td>Zekeringen vervangen</td><td class="price">15</td></tr>
+</table>
 
-  <h2>Extra’s / comfort</h2>
-  <table>
-    <tr><th>Onderdeel</th><th>Prijs (€)</th></tr>
-    <tr><td>Nieuwe banden (per stuk, incl. montage)</td><td>70 - 120</td></tr>
-    <tr><td>Zadelherstel / slot smeren</td><td>25 - 50</td></tr>
-    <tr><td>Kappen nakijken / vervangen</td><td>100 - 200</td></tr>
-    <tr><td>Scooter poetsen & waxen</td><td>30 - 60</td></tr>
-  </table>
+<h2>
+  <svg class="icon icon-large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L15 8H9L12 2ZM4 10H20V20H4V10Z"/></svg>
+  Groot onderhoud
+</h2>
+<table>
+<tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
+<tr><td>Jaarlijkse grote beurt</td><td class="price">200</td></tr>
+<tr><td>Compressietest motor</td><td class="price">50</td></tr>
+<tr><td>Volledige carburateur/injectie service</td><td class="price">130</td></tr>
+<tr><td>Wiel- en balhoofdlagers vervangen</td><td class="price">150</td></tr>
+<tr><td>Schokbrekers vervangen (set)</td><td class="price">200</td></tr>
+</table>
 
-  <p><em>⚠️ Dit zijn gemiddelde richtprijzen. Prijzen verschillen per merk, model en garage.</em></p>
-  <p><a href="gpt.html">← Terug naar Home</a></p>
+<h2>
+  <svg class="icon icon-extra" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8 7 2 12 12 22C22 12 16 7 12 2Z"/></svg>
+  Extra’s / comfort
+</h2>
+<table>
+<tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
+<tr><td>Nieuwe banden (per stuk, incl. montage)</td><td class="price">95</td></tr>
+<tr><td>Zadelherstel / slot smeren</td><td class="price">35</td></tr>
+<tr><td>Kappen nakijken / vervangen</td><td class="price">150</td></tr>
+<tr><td>Scooter poetsen & waxen</td><td class="price">45</td></tr>
+</table>
+
+<p><em>⚠️ Dit zijn officiële richtprijzen. Prijzen kunnen verschillen per merk en model.</em></p>
+<p><a href="gpt.html">← Terug naar Home</a></p>
+
 </div>
+
+<button onclick="topFunction()" id="topBtn" title="Ga naar boven">↑</button>
+
+<script>
+const topBtn = document.getElementById("topBtn");
+window.onscroll = function() {
+  if(document.body.scrollTop > 200 || document.documentElement.scrollTop > 200){
+    topBtn.style.display = "block";
+  } else {
+    topBtn.style.display = "none";
+  }
+};
+function topFunction(){ window.scrollTo({top:0, behavior:'smooth'}); }
+</script>
 
 </body>
 </html>
+
 
