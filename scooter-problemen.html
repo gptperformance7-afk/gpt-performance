@@ -3,139 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Officiële Scooter Onderhoud Prijzen</title>
+<title> Onderhoud Prijzen</title>
 <style>
   * { box-sizing: border-box; }
-  body { font-family: 'Arial', sans-serif; background: #f4f7f9; margin:0; padding:0; color:#333; line-height:1.6; }
-  a { color:#4CAF50; text-decoration:none; }
+  body { font-family: 'Arial', sans-serif; margin:0; padding:0; background:#121212; color:#eee; }
+
+  /* Banner */
+  .banner {
+    width:100%;
+    height:250px;
+    background: url('scooter-banner.jpg') center/cover no-repeat;
+    border-bottom:4px solid #ff3b3f;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1000px;
+    margin:auto;
+    padding:30px;
+    background:#1e1e1e;
+    border-radius:10px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.5);
+    margin-top:-60px; /* Overlap banner voor luxe effect */
+  }
+
+  h1 { text-align:center; color:#ff3b3f; margin-bottom:30px; font-size:32px; }
+  h2 {
+    margin-top:35px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#ff3b3f;
+    border-bottom:2px solid #ff3b3f;
+    padding-bottom:5px;
+    font-size:24px;
+  }
+
+  /* Iconen per onderdeel */
+  .icon { width:24px; height:24px; fill:#ff3b3f; }
+
+  /* Tabellen */
+  table { width:100%; border-collapse: collapse; margin-top:15px; }
+  th, td { border:1px solid #333; padding:12px 15px; text-align:left; }
+  th { background:#ff3b3f; color:#fff; }
+  tr:hover { background:#2a2a2a; }
+  td.price { color:#ff3b3f; font-weight:bold; }
+
+  a { color:#ff3b3f; text-decoration:none; }
   a:hover { text-decoration:underline; }
 
-  .container { max-width: 1000px; margin:auto; padding:20px; background:#fff; border-radius:10px; box-shadow:0 6px 15px rgba(0,0,0,0.1); }
-
-  h1 { text-align:center; color:#2E7D32; margin-bottom:20px; }
-  h2 { margin-top:35px; display:flex; align-items:center; gap:10px; padding-bottom:5px; }
-
-  .icon { width:28px; height:28px; }
-  .icon-base { fill:#FFB300; }      /* Oranje voor basis onderhoud */
-  .icon-period { fill:#1976D2; }    /* Blauw voor periodiek */
-  .icon-large { fill:#D32F2F; }     /* Rood voor groot onderhoud */
-  .icon-extra { fill:#388E3C; }     /* Groen voor extra/comfort */
-
-  img { width:100%; max-width:700px; display:block; margin: 20px auto; border-radius:10px; }
-
-  table { width:100%; border-collapse: collapse; margin-top:10px; display: block; overflow-x:auto; }
-  th, td { border:1px solid #ddd; padding:12px 15px; text-align:left; min-width:120px; }
-  th { background:#f0f0f0; color:#333; }
-  tr:hover { background:#f1f8e9; }
-  td.price { color:#2E7D32; font-weight:bold; }
-
-  #topBtn {
-    display:none;
-    position:fixed;
-    bottom:40px;
-    right:40px;
-    z-index:99;
-    border:none;
-    outline:none;
-    background-color:#4CAF50;
-    color:white;
-    cursor:pointer;
-    padding:12px 16px;
-    border-radius:50px;
-    font-size:16px;
-    box-shadow:0 4px 8px rgba(0,0,0,0.2);
-  }
-  #topBtn:hover { background-color:#45a049; }
-
+  /* Mobiel */
   @media (max-width:768px){
-    .container { padding:15px; }
+    .container { padding:20px; }
+    h1 { font-size:26px; }
+    h2 { font-size:20px; }
     th, td { padding:10px; }
   }
 </style>
 </head>
 <body>
 
-<div class="container" id="top">
+<div class="banner"></div>
 
-<h1>Officiële Scooter Onderhoud Prijzen</h1>
-<img src="scooter.jpg" alt="Scooter in de werkplaats">
+<div class="container">
+  <h1>Officiële Scooter Onderhoud Prijzen</h1>
 
-<h2>
-  <svg class="icon icon-base" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L15 8H9L12 2ZM4 10H20V20H4V10Z"/></svg>
-  Basis onderhoud
-</h2>
-<table>
-<tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
-<tr><td>Olie verversen</td><td class="price">40</td></tr>
-<tr><td>Bougie vervangen</td><td class="price">20</td></tr>
-<tr><td>Luchtfilter vervangen</td><td class="price">30</td></tr>
-<tr><td>Bandenspanning / controle</td><td class="price">12</td></tr>
-<tr><td>Accu opladen / controleren</td><td class="price">25</td></tr>
-<tr><td>Remmen afstellen</td><td class="price">30</td></tr>
-<tr><td>Remblokken vervangen</td><td class="price">55</td></tr>
-</table>
+  <h2>
+    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L15 8H9L12 2ZM4 10H20V20H4V10Z"/></svg>
+    Basis onderhoud
+  </h2>
+  <table>
+    <tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
+    <tr><td>Olie verversen <svg class="icon" viewBox="0 0 24 24"><path d="M6 2h12v2H6z"/></svg></td><td class="price">40</td></tr>
+    <tr><td>Bougie vervangen <svg class="icon" viewBox="0 0 24 24"><path d="M12 2l1 6"/></svg></td><td class="price">20</td></tr>
+    <tr><td>Luchtfilter vervangen <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h16"/></svg></td><td class="price">30</td></tr>
+    <tr><td>Bandenspanning / controle <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg></td><td class="price">12</td></tr>
+    <tr><td>Accu opladen / controleren <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20"/></svg></td><td class="price">25</td></tr>
+    <tr><td>Remmen afstellen <svg class="icon" viewBox="0 0 24 24"><path d="M2 12h20"/></svg></td><td class="price">30</td></tr>
+    <tr><td>Remblokken vervangen <svg class="icon" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></td><td class="price">55</td></tr>
+  </table>
 
-<h2>
-  <svg class="icon icon-period" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1Zm1 17h-2v-6h2Zm0-8h-2V7h2Z"/></svg>
-  Periodiek onderhoud
-</h2>
-<table>
-<tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
-<tr><td>V-snaar vervangen</td><td class="price">95</td></tr>
-<tr><td>Variateur rollen vervangen</td><td class="price">70</td></tr>
-<tr><td>Kleppen afstellen (4-takt)</td><td class="price">80</td></tr>
-<tr><td>Carburateur reinigen</td><td class="price">65</td></tr>
-<tr><td>Injectiesysteem check</td><td class="price">75</td></tr>
-<tr><td>Koelvloeistof vervangen</td><td class="price">50</td></tr>
-<tr><td>Zekeringen vervangen</td><td class="price">15</td></tr>
-</table>
+  <h2>
+    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1Zm1 17h-2v-6h2Zm0-8h-2V7h2Z"/></svg>
+    Periodiek onderhoud
+  </h2>
+  <table>
+    <tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
+    <tr><td>V-snaar vervangen <svg class="icon" viewBox="0 0 24 24"><path d="M2 12h20"/></svg></td><td class="price">95</td></tr>
+    <tr><td>Variateur rollen vervangen <svg class="icon" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></td><td class="price">70</td></tr>
+    <tr><td>Kleppen afstellen (4-takt) <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20"/></svg></td><td class="price">80</td></tr>
+    <tr><td>Carburateur reinigen <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h16"/></svg></td><td class="price">65</td></tr>
+    <tr><td>Injectiesysteem check <svg class="icon" viewBox="0 0 24 24"><path d="M12 2L15 8H9L12 2Z"/></svg></td><td class="price">75</td></tr>
+    <tr><td>Koelvloeistof vervangen <svg class="icon" viewBox="0 0 24 24"><path d="M6 2h12v2H6z"/></svg></td><td class="price">50</td></tr>
+    <tr><td>Zekeringen vervangen <svg class="icon" viewBox="0 0 24 24"><path d="M2 12h20"/></svg></td><td class="price">15</td></tr>
+  </table>
 
-<h2>
-  <svg class="icon icon-large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L15 8H9L12 2ZM4 10H20V20H4V10Z"/></svg>
-  Groot onderhoud
-</h2>
-<table>
-<tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
-<tr><td>Jaarlijkse grote beurt</td><td class="price">200</td></tr>
-<tr><td>Compressietest motor</td><td class="price">50</td></tr>
-<tr><td>Volledige carburateur/injectie service</td><td class="price">130</td></tr>
-<tr><td>Wiel- en balhoofdlagers vervangen</td><td class="price">150</td></tr>
-<tr><td>Schokbrekers vervangen (set)</td><td class="price">200</td></tr>
-</table>
+  <h2>
+    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L15 8H9L12 2ZM4 10H20V20H4V10Z"/></svg>
+    Groot onderhoud
+  </h2>
+  <table>
+    <tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
+    <tr><td>Jaarlijkse grote beurt <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20"/></svg></td><td class="price">200</td></tr>
+    <tr><td>Compressietest motor <svg class="icon" viewBox="0 0 24 24"><path d="M2 12h20"/></svg></td><td class="price">50</td></tr>
+    <tr><td>Volledige carburateur/injectie service <svg class="icon" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></td><td class="price">130</td></tr>
+    <tr><td>Wiel- en balhoofdlagers vervangen <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg></td><td class="price">150</td></tr>
+    <tr><td>Schokbrekers vervangen (set) <svg class="icon" viewBox="0 0 24 24"><path d="M12 2L15 8H9L12 2Z"/></svg></td><td class="price">200</td></tr>
+  </table>
 
-<h2>
-  <svg class="icon icon-extra" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8 7 2 12 12 22C22 12 16 7 12 2Z"/></svg>
-  Extra’s / comfort
-</h2>
-<table>
-<tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
-<tr><td>Nieuwe banden (per stuk, incl. montage)</td><td class="price">95</td></tr>
-<tr><td>Zadelherstel / slot smeren</td><td class="price">35</td></tr>
-<tr><td>Kappen nakijken / vervangen</td><td class="price">150</td></tr>
-<tr><td>Scooter poetsen & waxen</td><td class="price">45</td></tr>
-</table>
+  <h2>
+    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8 7 2 12 12 22C22 12 16 7 12 2Z"/></svg>
+    Extra’s / comfort
+  </h2>
+  <table>
+    <tr><th scope="col">Onderdeel</th><th scope="col">Prijs (€)</th></tr>
+    <tr><td>Nieuwe banden (per stuk, incl. montage) <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg></td><td class="price">95</td></tr>
+    <tr><td>Zadelherstel / slot smeren <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20"/></svg></td><td class="price">35</td></tr>
+    <tr><td>Kappen nakijken / vervangen <svg class="icon" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></td><td class="price">150</td></tr>
+    <tr><td>Scooter poetsen & waxen <svg class="icon" viewBox="0 0 24 24"><path d="M2 12h20"/></svg></td><td class="price">45</td></tr>
+  </table>
 
-<p><em>⚠️ Dit zijn officiële richtprijzen. Prijzen kunnen verschillen per merk en model.</em></p>
-<p><a href="gpt.html">← Terug naar Home</a></p>
-
+  <p style="margin-top:20px;"><em>⚠️ Dit zijn officiële richtprijzen. Prijzen kunnen verschillen per merk en model.</em></p>
+  <p><a href="gpt.html">← Terug naar Home</a></p>
 </div>
-
-<button onclick="topFunction()" id="topBtn" title="Ga naar boven">↑</button>
-
-<script>
-const topBtn = document.getElementById("topBtn");
-window.onscroll = function() {
-  if(document.body.scrollTop > 200 || document.documentElement.scrollTop > 200){
-    topBtn.style.display = "block";
-  } else {
-    topBtn.style.display = "none";
-  }
-};
-function topFunction(){ window.scrollTo({top:0, behavior:'smooth'}); }
-</script>
 
 </body>
 </html>
+
+
 
 
 
