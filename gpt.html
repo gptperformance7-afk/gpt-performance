@@ -1,160 +1,191 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=4.0">
-  <title>GPT Performance - Scooter Onderhoud & Opvoeren</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background-color: #f9f9f9;
-      color: #333;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPT Performance - Scooter Onderhoud & Tuning</title>
+<style>
+  /* Algemeen */
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
 
-    /* HEADER */
-    header {
-      background: #222;
-      color: white;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
+  a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
 
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
+  a:hover {
+    text-decoration: underline;
+  }
 
-    nav {
-      margin-top: 0.5rem;
-    }
+  /* Header / Navigatie */
+  header {
+    background: #222;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+  }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+  header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+  }
 
-    nav a:hover {
-      color: orange;
-    }
+  nav {
+    margin-top: 10px;
+  }
 
-    /* HERO */
-   .hero {
-  background: url("home-foto.jpg") no-repeat center center/cover;
-  text-align: center;
-  color: white;
-  height: 100px;       /* hoogte beperken, bv. 300px */
-  display: flex;       /* zorgt dat tekst netjes in het midden staat */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+  nav a {
+    margin: 0 15px;
+    color: white;
+    font-weight: bold;
+  }
 
+  /* Hero */
+  .hero {
+    background: url("home-foto.jpg") no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+  }
 
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-    }
+  .hero::after {
+    content: "";
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.4);
+  }
 
-    .hero button {
-      background: orange;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
 
-    .hero button:hover {
-      background: darkorange;
-    }
+  .hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  }
 
-    /* SECTIONS */
-    section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+  .hero button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
 
-    section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-      color: #222;
-    }
+  .hero button:hover {
+    background: #45a049;
+  }
 
-    .services, .team, .gallery {
-      display: grid;
-      gap: 20px;
-    }
+  /* Secties */
+  .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
 
-    .services {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
+  section {
+    margin-bottom: 50px;
+  }
 
-    .service, .member, .photo {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+  h2 {
+    color: #4CAF50;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #4CAF50;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
 
-    .gallery {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
+  ul {
+    line-height: 1.8;
+    margin-left: 20px;
+  }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 8px;
-    }
+  .services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 
-    /* FORM */
-    form input, form textarea, form button {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
+  .service {
+    flex: 1 1 280px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+  }
 
-    form button {
-      background: orange;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
+  .service:hover {
+    transform: translateY(-5px);
+  }
 
-    form button:hover {
-      background: darkorange;
-    }
+  img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
 
-    /* FOOTER */
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-    }
+  /* Galerij */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
 
-    footer a {
-      color: orange;
-      text-decoration: none;
-    }
-  </style>
+  /* Contactformulier */
+  form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  form button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  form button:hover {
+    background: #45a049;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+  }
+
+  /* Responsive */
+  @media(max-width: 768px){
+    .services { flex-direction: column; }
+    .hero h2 { font-size: 1.8rem; }
+    .hero { height: 300px; }
+  }
+</style>
 </head>
-
 <body>
 
 <header>
@@ -166,69 +197,71 @@
     <a href="#gallery">Galerij</a>
     <a href="#contact">Contact</a>
     <a href="scooter-problemen.html">Scooterproblemen</a>
-    <a href="scooter.tuning.html">Tuning</a>
+    <a href="scooter-tuning.html">Tuning & Opvoeren</a>
   </nav>
 </header>
 
 <section class="hero" id="home">
-  <h2>Optimaliseer je scooter, beleef de snelheid!</h2>
-  <button>Maak een afspraak</button>
-</section>
-
-<section id="services">
-  <h2>Onze Diensten</h2>
-  <div class="services">
-    <div class="service">
-      <h3>Scooter Onderhoud</h3>
-      <p>Periodiek onderhoud, remmen, banden, olie verversen en motorcheck.</p>
-    </div>
-    <div class="service">
-      <h3>Scooter Opvoeren</h3>
-      <p>2- en 4-takt tuning, uitlaten, variatoren en carburateurs. Performance upgrades op maat.</p>
-    </div>
-    <div class="service">
-      <h3>Pakketten & Offertes</h3>
-      <p>Kies een onderhouds- of tuningpakket dat bij jou past. Vraag direct een offerte aan!</p>
-    </div>
+  <div class="hero-content">
+    <h2>Optimaliseer je scooter, beleef de snelheid!</h2>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">Maak een afspraak</button>
   </div>
 </section>
 
-<section id="about">
-  <h2>Over GPT Performance</h2>
-  <p style="text-align:center; max-width:800px; margin:auto;">
-    GPT Performance is jouw specialist in scooter onderhoud en opvoeren. Wij hebben ervaring met 2- en 4-takt scooters en zorgen dat jouw voertuig altijd top presteert. We zijn een startend bedrijf dat onderhoud bij de klant uitvoert. Binnenkort openen we een eigen locatie.
-  </p>
-  <div class="team">
-    <div class="member">
-      <h3>Gijs Huijer</h3>
-      <p>Hoofdmonteur, expert 2-takt scooters</p>
-    </div>
-    <div class="member">
-      <h3>Tuning Expert</h3>
-      <p>Specialist in scooter performance upgrades</p>
-    </div>
-  </div>
-</section>
+<div class="container">
 
-<section id="gallery">
-  <h2>Galerij</h2>
-  <div class="gallery">
-    <div class="photo"><img src="foto.jpg" alt="Scooter"></div>
-    <div class="photo"><img src="https://images.unsplash.com/photo-1612874740257-0f2340c76334" alt="Werkplaats"></div>
-    <div class="photo"><img src="https://images.unsplash.com/photo-1605553295619-f0a4b50aa6e6" alt="Scooter tuning"></div>
-  </div>
-</section>
+  <section id="services">
+    <h2>Onze Diensten</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Scooter Onderhoud</h3>
+        <p>Periodiek onderhoud, remmen, banden, olie verversen en motorcheck.</p>
+      </div>
+      <div class="service">
+        <h3>Scooter Opvoeren</h3>
+        <p>2- en 4-takt tuning, uitlaten, variatoren en carburateurs. Performance upgrades op maat.</p>
+      </div>
+      <div class="service">
+        <h3>Pakketten & Offertes</h3>
+        <p>Kies een onderhouds- of tuningpakket dat bij jou past. Vraag direct een offerte aan!</p>
+      </div>
+    </div>
+    <p style="margin-top:20px;">
+      <a href="scooter-problemen.html">Bekijk scooterproblemen & onderhoud →</a><br>
+      <a href="scooter-tuning.html">Alles over tuning & opvoeren →</a>
+    </p>
+  </section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p style="text-align:center;">Adres: Jouw Straat 123, 1234 AB Stad | Telefoon: +32 470 646 64 | Email: gptperformance7@gmail.com</p>
-  <form>
-    <input type="text" placeholder="Naam" required>
-    <input type="email" placeholder="Email" required>
-    <textarea placeholder="Bericht" rows="5" required></textarea>
-    <button type="submit">Verstuur</button>
-  </form>
-</section>
+  <section id="about">
+    <h2>Over GPT Performance</h2>
+    <p>GPT Performance is jouw specialist in scooter onderhoud en opvoeren. Wij hebben ervaring met 2- en 4-takt scooters en zorgen dat jouw voertuig altijd top presteert. Onze monteurs werken professioneel en klantgericht.</p>
+  </section>
+
+  <section id="gallery">
+    <h2>Galerij</h2>
+    <div class="gallery">
+      <img src="foto.jpg" alt="Scooter">
+      <img src="https://images.unsplash.com/photo-1612874740257-0f2340c76334" alt="Werkplaats">
+      <img src="https://images.unsplash.com/photo-1605553295619-f0a4b50aa6e6" alt="Scooter tuning">
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="text-align:center;">
+      Adres: Jouw Straat 123, 1234 AB Stad | Telefoon: +32 470 646 64
+    </p>
+
+    <!-- Contactformulier via Formspree -->
+    <form action="https://formspree.io/f/mnqlyyqq" method="POST" style="max-width:600px; margin:20px auto;">
+      <input type="text" name="name" placeholder="Naam" required>
+      <input type="email" name="email" placeholder="E-mail" required>
+      <textarea name="message" placeholder="Bericht" rows="5" required></textarea>
+      <button type="submit">Verstuur</button>
+    </form>
+    <p style="text-align:center;"><em>Je bericht wordt direct naar ons e-mailadres gestuurd via Formspree.</em></p>
+  </section>
+</div>
 
 <footer>
   <p>&copy; 2025 GPT Performance. Alle rechten voorbehouden.</p>
@@ -237,6 +270,7 @@
 
 </body>
 </html>
+
 
 
 
