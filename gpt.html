@@ -18,24 +18,94 @@
     form input, form textarea { width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: 1px solid #ccc; }
     form button { background: #ff6600; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
     footer { background: #1a1a1a; color: white; text-align: center; padding: 20px; }
-</style>
+</style>.custom-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  position: relative;
+}
+
+.custom-navbar .logo {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.custom-navbar .menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-navbar .menu li {
+  margin-left: 1rem;
+}
+
+.custom-navbar .menu li a {
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  transition: background 0.3s;
+}
+
+.custom-navbar .menu li a:hover {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+#custom-menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .custom-navbar .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #333;
+  }
+  .custom-navbar .menu li {
+    margin: 0;
+    text-align: center;
+    border-top: 1px solid #444;
+  }
+  #custom-menu-toggle:checked + .menu-icon + .menu {
+    display: flex;
+  }
+  .menu-icon {
+    display: block;
+  }
+}
+
 </head>
 
 
-<body>
-<header>
-    <h1>GPT Performance</h1>
-<nav class="navbar">
+<body><nav class="custom-navbar">
   <div class="logo">MijnSite</div>
-  <input type="checkbox" id="menu-toggle" />
-  <label for="menu-toggle" class="menu-icon">&#9776;</label>
+  <input type="checkbox" id="custom-menu-toggle" />
+  <label for="custom-menu-toggle" class="menu-icon">&#9776;</label>
   <ul class="menu">
-    <li><a href="home.html">home</a></li>
-    <li><a href="over.html">over</a></li>
-    <li><a href="diensten.html">diensten</a></li>
-    <li><a href="contact.html">contact</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="over.html">Over</a></li>
+    <li><a href="diensten.html">Diensten</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
+
+<header>
+    <h1>GPT Performance</h1>
+
 
 
 </header>
@@ -109,6 +179,7 @@
 
 </body>
 </html>href="scooter-problemen.html">Ga naar scooterproblemen →</a></p>
+
 
 
 
