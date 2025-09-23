@@ -1,332 +1,121 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Scooter Tuning & Opvoeren — GPT Performance</title>
-
-  <!-- Orbitron font (zelfde als home) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Performance - Scooter Tuning & Opvoeren</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Basis / thema (match homepagina) */
-    :root{
-      --bg:#0d0d0d;
-      --panel:#1a1a1a;
-      --panel-2:#262626;
-      --red:#ff3333;
-      --dark-red:#b30000;
-      --muted:#d9d9d9;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
+    /* Algemeen */
+    body {
       font-family:'Orbitron',sans-serif;
-      background: linear-gradient(180deg,var(--bg) 0%, #080808 100%);
-      color:var(--muted);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.6;
+      background:linear-gradient(180deg,#000 0%,#b30000 100%);
+      margin:0; padding:0;
+      color:#eee; line-height:1.6;
     }
-    a{ color:var(--red); text-decoration:none; transition:all .18s ease; }
-    a:hover{ text-shadow:0 0 12px var(--red); color:#ff5555 }
+    a { color:#ff3333; text-decoration:none; transition:0.3s; text-shadow:0 0 5px #ff0000; }
+    a:hover { color:#ff5555; text-shadow:0 0 15px #ff0000; }
 
-    /* Header (match home) */
-    header{
-      background:#000;
-      padding:20px 16px;
-      text-align:center;
-      box-shadow:0 4px 10px rgba(255,0,0,0.25);
-      position:sticky; top:0; z-index:50;
-    }
-    header h1{ margin:0; font-size:2.4rem; color:var(--red); letter-spacing:2px;
-      text-shadow:0 0 12px var(--red), 0 0 20px rgba(255,0,0,0.12); }
-    nav{ margin-top:10px; }
-    nav a{ margin:0 12px; color:#fff; font-weight:700; font-size:0.95rem; }
-    nav a:hover{ color:var(--red) }
+    /* Header */
+    header { background:#000; padding:20px 0; text-align:center; box-shadow:0 4px 10px rgba(255,0,0,0.4); }
+    header h1 { margin:0; font-size:2.5rem; color:#ff3333; text-shadow:0 0 15px #ff0000,0 0 30px #ff3333; }
+    nav { margin-top:10px; }
+    nav a { margin:0 15px; color:#fff; font-weight:bold; }
+    nav a:hover { color:#ff3333; text-shadow:0 0 15px #ff0000; }
 
-    /* Hero */
-    .hero{
-      background: url("tuning-banner.jpg") center/cover no-repeat;
-      height:380px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,0.55); }
-    .hero .hero-inner{ position:relative; z-index:2; text-align:center; padding:0 20px; }
-    .hero h2{ color:var(--red); font-size:2.4rem; margin:0 0 12px; text-shadow:0 0 18px var(--red); }
-    .hero p{ color:#ffecec; max-width:900px; margin:0 auto 14px; }
-    .cta-btn{
-      background: linear-gradient(45deg,var(--red), var(--dark-red));
-      color:#fff;
-      padding:12px 22px;
-      border-radius:8px;
-      border:none;
-      cursor:pointer;
-      font-weight:700;
-      letter-spacing:1px;
-      box-shadow:0 6px 20px rgba(179,0,0,0.18);
-      text-transform:uppercase;
-    }
-    .cta-btn:hover{ box-shadow:0 10px 30px rgba(255,51,51,0.25); transform:translateY(-2px) }
+    /* Container */
+    .container { max-width:1100px; margin:40px auto; padding:0 20px; }
 
-    /* Page layout */
-    .container{ max-width:1100px; margin: -60px auto 60px; padding:24px; background:var(--panel); border-radius:12px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,51,51,0.04); }
-    h1{ color:var(--red); text-align:center; margin-top:6px; text-shadow:0 0 10px var(--red) }
-    h3{ color:var(--red); margin-top:22px; margin-bottom:8px; }
+    h2 { color:#ff3333; border-bottom:2px solid #ff3333; display:inline-block; margin-bottom:15px; padding-bottom:5px; text-shadow:0 0 15px #ff0000; }
 
-    /* Layout grid for content + sidebar */
-    .grid{ display:grid; grid-template-columns: 2fr 1fr; gap:24px; }
-    .card{ background:linear-gradient(180deg,var(--panel) 0%, var(--panel) 100%); padding:18px; border-radius:10px; border:1px solid rgba(255,51,51,0.03);}
-    .muted{ color:#cfcfcf; font-size:0.95rem; }
+    /* Afbeeldingen */
+    img { width:100%; max-width:700px; border-radius:12px; display:block; margin:20px auto; box-shadow:0 0 20px rgba(255,0,0,0.5); }
 
-    /* Tables */
-    table{ width:100%; border-collapse:collapse; margin-top:12px; }
-    th, td{ padding:12px 10px; border-bottom:1px solid rgba(255,255,255,0.04); text-align:left; font-size:0.95rem; }
-    th{ background:var(--panel-2); color:var(--red); text-transform:uppercase; font-weight:700; }
-    tbody tr:hover{ background:#131313 }
+    /* Tabellen */
+    table { width:100%; border-collapse:collapse; margin-top:15px; }
+    th,td { border:1px solid #333; padding:12px; text-align:left; }
+    th { background:#1a1a1a; color:#ff3333; text-shadow:0 0 10px #ff0000; }
+    tr:nth-child(even){ background:#111; }
+    tr:hover { background:#222; }
 
-    /* lists */
-    ul{ padding-left:18px; margin:8px 0 12px; }
-    li{ margin:6px 0; }
-
-    /* Sidebar */
-    .sidebar .box{ margin-bottom:16px; padding:14px; border-radius:8px; background:#151515; border:1px solid rgba(255,51,51,0.03) }
-    .price{ color:var(--red); font-weight:700; font-size:1.05rem; }
-
-    /* FAQ */
-    .faq dt{ font-weight:700; color:#fff; margin-top:12px; }
-    .faq dd{ margin:6px 0 10px 0; color:#d7d7d7; }
-
-    /* Checklist */
-    .check { display:flex; gap:12px; align-items:flex-start; margin:8px 0; }
-    .check .dot{ width:12px; height:12px; border-radius:50%; background:var(--red); margin-top:6px; box-shadow:0 0 10px var(--red) }
-
-    /* Footer (match home) */
-    footer{ text-align:center; padding:20px 10px; background:#000; color:#bdbdbd; margin-top:28px; box-shadow:0 -4px 10px rgba(255,0,0,0.08) }
-    footer a{ margin:0 8px; color:var(--red) }
+    /* Footer */
+    footer { text-align:center; padding:25px; background:#000; color:white; box-shadow:0 -4px 10px rgba(255,0,0,0.3);}
+    footer a { color:#ff3333; margin:0 10px; text-shadow:0 0 10px #ff0000; }
+    footer a:hover { color:#ff5555; text-shadow:0 0 20px #ff0000; }
 
     /* Responsive */
-    @media (max-width:980px){
-      .grid{ grid-template-columns:1fr; }
-      .container{ margin-top:20px }
+    @media(max-width:768px){
+      header h1 { font-size:2rem; }
+      h2 { font-size:1.5rem; }
     }
-    @media (max-width:600px){
-      header h1{ font-size:1.6rem }
-      .hero{ height:260px }
-      .hero h2{ font-size:1.4rem }
-    }
-
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>GPT Performance</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="diensten.html">Diensten</a>
-      <a href="over.html">Over Ons</a>
-      <a href="galerij.html">Galerij</a>
-      <a href="contact.html">Contact</a>
-      <a href="scooter-problemen.html">Scooterproblemen</a>
-      <a href="tuning.html" style="color:var(--red)">Tuning & Opvoeren</a>
-      <a href="onderhoud.html">Onderhoud</a>
-    </nav>
-  </header>
+<header>
+  <h1>GPT Performance</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="onderhoud.html">Onderhoud</a>
+    <a href="tuning.html">Tuning</a>
+    <a href="scooter-problemen.html">Scooterproblemen</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <!-- Hero -->
-  <section class="hero" aria-hidden="false">
-    <div class="hero-inner">
-      <h2>Professionele scooter tuning — technisch en veilig</h2>
-      <p>Performance upgrades, betrouwbare montage en advies op maat. Kies een pakket of vraag een gratis consult.</p>
-      <button class="cta-btn" onclick="location.href='contact.html'">Maak afspraak</button>
-    </div>
-  </section>
+<div class="container">
+  <h2>Tuning & Opvoeren</h2>
+  <img src="tuning-scooter.jpg" alt="Scooter tuning in de werkplaats">
 
-  <!-- Main container -->
-  <main class="container" role="main">
+  <p><b>Tuning</b> is het verbeteren van de prestaties van je scooter: meer kracht, betere acceleratie en hogere topsnelheid. 
+  <b>Opvoeren</b> betekent meestal dat de snelheidsbegrenzer wordt verwijderd of onderdelen worden aangepast om harder te rijden. 
+  Bij GPT Performance doen we dit professioneel, met oog voor <b>veiligheid</b> en <b>betrouwbaarheid</b>.</p>
 
-    <h1>Tuning & Opvoeren — uitgebreide uitleg voor klanten</h1>
+  <h2>Wat is mogelijk?</h2>
+  <ul>
+    <li><b>Variateur & Rollen:</b> bepaalt acceleratie en topsnelheid.</li>
+    <li><b>Sportuitlaat:</b> laat gassen sneller ontsnappen → meer vermogen.</li>
+    <li><b>Cilinderkit:</b> meer motorinhoud (bijv. 50cc → 70cc) voor extra pk’s.</li>
+    <li><b>Carburateur afstellen:</b> betere lucht/brandstof verhouding.</li>
+    <li><b>ECU chiptuning:</b> software-aanpassing bij 4-takt injectie scooters.</li>
+    <li><b>Sportluchtfilter:</b> meer luchttoevoer = betere verbranding.</li>
+    <li><b>Sport V-snaar:</b> sterkere en snellere overbrenging.</li>
+  </ul>
 
-    <div class="grid">
-      <!-- Main content -->
-      <section class="card" aria-labelledby="intro">
-        <h3 id="intro">Inleiding — wat kun je verwachten?</h3>
-        <p class="muted">Tuning is maatwerk. Hieronder leggen we stap-voor-stap uit wat elke aanpassing doet, welke voordelen en risico's er zijn, hoeveel de onderdelen en montage ongeveer kosten en welke pakketten we aanbieden. Zo maak je een geïnformeerde keuze.</p>
+  <h2>Veiligheid & Wetgeving</h2>
+  <ul>
+    <li>Tuning vraagt altijd om <b>betere remmen, banden en vering</b>.</li>
+    <li>Opgevoerde scooters mogen vaak <b>niet op de openbare weg</b> (check wetgeving!).</li>
+    <li>Onjuiste montage kan schade veroorzaken. Laat tuning altijd professioneel uitvoeren.</li>
+  </ul>
 
-        <h3>Opvoeren vs Tuning</h3>
-        <ul>
-          <li><strong>Opvoeren</strong>: specifiek gericht op het verhogen van de maximale snelheid (kan illegaal zijn op de openbare weg).</li>
-          <li><strong>Tuning</strong>: breder begrip dat prestaties, respons, geluid en rijkarakter verbetert — niet altijd gericht op snelheid alleen.</li>
-        </ul>
+  <h2>Marktconforme Richtprijzen (+ montage)</h2>
+  <table>
+    <tr><th>Onderdeel / Aanpassing</th><th>2-Takt (€)</th><th>4-Takt (€)</th><th>Gem. Arbeidstijd</th></tr>
+    <tr><td>Sportuitlaat (merkkwaliteit)</td><td>100 - 250</td><td>120 - 300</td><td>30-45 min</td></tr>
+    <tr><td>Variateur & Rollen</td><td>60 - 130</td><td>70 - 140</td><td>30-45 min</td></tr>
+    <tr><td>Cilinderkit</td><td>150 - 300</td><td>n.v.t.</td><td>1.5-2 uur</td></tr>
+    <tr><td>Carburateur / Luchtfilter afstelling</td><td>50 - 120</td><td>60 - 140</td><td>45-60 min</td></tr>
+    <tr><td>ECU / Software tuning</td><td>n.v.t.</td><td>250 - 400</td><td>30-60 min</td></tr>
+    <tr><td>V-snaar sport</td><td>40 - 90</td><td>50 - 100</td><td>30 min</td></tr>
+  </table>
 
-        <h3>Gedetailleerde onderdelen — wat ze doen & risico’s</h3>
+  <p><em>⚠️ Dit zijn gemiddelde richtprijzen op basis van de Belgische en Nederlandse markt. 
+  Exacte prijzen verschillen per merk, model en gekozen onderdelen. 
+  <b>Vraag altijd een vrijblijvende offerte aan voor een definitieve prijs.</b></em></p>
 
-        <h4>Variateur & Rollen</h4>
-        <p class="muted">De variateur en rollen bepalen de overbrengingskarakteristiek van de transmissie — hoe snel je optrekt en wat de effectieve topsnelheid is.</p>
-        <ul>
-          <li><strong>Effect:</strong> snellere acceleratie, meer dynamiek bij wegrijden.</li>
-          <li><strong>Risico:</strong> versnelde slijtage van V-snaar, hogere belasting van motor/transmissie als verkeerd afgesteld.</li>
-          <li><strong>Advies:</strong> altijd rollen kiezen op basis van gewicht, cilinderinhoud en gewenste performance; afstellen door ervaren monteur.</li>
-        </ul>
+  <p><a href="index.html">← Terug naar Home</a></p>
+</div>
 
-        <h4>Sportuitlaat</h4>
-        <p class="muted">Een sportuitlaat maakt de uitlaatgassen efficiënter afvoerbaar en kan het vermogen en geluid verbeteren.</p>
-        <ul>
-          <li><strong>Effect:</strong> hoger vermogen bij hogere toeren, sportiger geluid.</li>
-          <li><strong>Risico:</strong> verkeerde uitlaat kan lage-toeren trekkracht verminderen of de motor ongunstig laten lopen.</li>
-          <li><strong>Advies:</strong> combineer met juiste carburateur-afstelling of ECU-tuning voor optimaal resultaat.</li>
-        </ul>
-
-        <h4>Cilinderkit (bijv. 70cc / 80cc)</h4>
-        <p class="muted">Vervanging van de cilinder voor meer inhoud → meer koppel en topvermogen.</p>
-        <ul>
-          <li><strong>Effect:</strong> significante toename van snelheid en acceleratie.</li>
-          <li><strong>Risico:</strong> verhoogde interne belasting en slijtage; vereist vaak betere koeling en brandstofafstemming.</li>
-          <li><strong>Advies:</strong> kies betrouwbare merken en laat montage door professionals uitvoeren.</li>
-        </ul>
-
-        <h4>Carburateur & injectie-afstelling</h4>
-        <p class="muted">Brandstof-luchtmengsel afstellen op gewijzigde onderdelen.</p>
-        <ul>
-          <li><strong>Effect:</strong> optimale verbranding, soepel verloop en maximaal vermogen.</li>
-          <li><strong>Risico:</strong> verkeerde sproeierkeuze of mapping kan oververhitting en motorschade veroorzaken.</li>
-          <li><strong>Advies:</strong> afstellen na montage van uitlaat/ cilinder/rolenset; dyno-tuning waar mogelijk.</li>
-        </ul>
-
-        <h4>Sportluchtfilter</h4>
-        <p class="muted">Verhoogt de luchtstroom naar het inlaatsysteem.</p>
-        <ul>
-          <li><strong>Effect:</strong> kleine winst in vermogen en snellere respons.</li>
-          <li><strong>Risico:</strong> als niet correct afgesteld, kan onverbrande brandstof of vuil binnendringen.</li>
-          <li><strong>Advies:</strong> combineer met juiste sproeiers of ECU-aanpassing.</li>
-        </ul>
-
-        <h4>ECU / Chiptuning (injectie)</h4>
-        <p class="muted">Softwarematige aanpassing van brandstoftoediening en ontsteking.</p>
-        <ul>
-          <li><strong>Effect:</strong> veilige en nauwkeurige aanpassing, vooral bij injectiemodellen.</li>
-          <li><strong>Risico:</strong> slechte maps kunnen motorschade veroorzaken; kies ervaren tuner.</li>
-          <li><strong>Advies:</strong> altijd met fallback/stock map werken of logging gebruiken.</li>
-        </ul>
-
-        <h3>Pakketten — keuzehulp</h3>
-        <p class="muted">Hieronder onze gangbare pakketten. Elk pakket wordt professioneel opgebouwd en uitgebreid getest.</p>
-
-        <table aria-label="Pakketten">
-          <thead>
-            <tr><th>Pakket</th><th>Inhoud</th><th>Vanaf (incl. montage)</th><th>Gem. arbeid</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Basis Tuning</strong></td>
-              <td>Variateur + rollen + afstelling</td>
-              <td>€150</td>
-              <td>0.5 - 1 uur</td>
-            </tr>
-            <tr>
-              <td><strong>Performance</strong></td>
-              <td>Variateur, sportuitlaat, luchtfilter, afstelling</td>
-              <td>€350</td>
-              <td>1 - 2 uur</td>
-            </tr>
-            <tr>
-              <td><strong>Race / Full Build</strong></td>
-              <td>Cilinderkit, uitlaat, carburateur/ECU, versterkingen</td>
-              <td>€650+</td>
-              <td>2 - 5 uur</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Kostenindicatie onderdelen & montage</h3>
-        <table aria-label="Kostenindicatie onderdelen">
-          <thead>
-            <tr><th>Onderdeel / Aanpassing</th><th>2-Takt (€)</th><th>4-Takt (€)</th><th>Arbeid</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Sportuitlaat</td><td>100 - 250</td><td>120 - 300</td><td>30-45 min</td></tr>
-            <tr><td>Variateur & Rollen</td><td>50 - 120</td><td>60 - 130</td><td>30 min</td></tr>
-            <tr><td>Cilinderkit</td><td>150 - 300</td><td>n.v.t.</td><td>1.5 - 2 uur</td></tr>
-            <tr><td>Carburateur / Luchtfilter</td><td>40 - 120</td><td>50 - 130</td><td>30-45 min</td></tr>
-            <tr><td>ECU Chiptuning</td><td>n.v.t.</td><td>150 - 350</td><td>30-60 min</td></tr>
-            <tr><td>V-snaar (sport)</td><td>30 - 70</td><td>40 - 80</td><td>30 min</td></tr>
-          </tbody>
-        </table>
-
-        <h3>Belangrijke risico’s & garanties</h3>
-        <ul>
-          <li>Opvoeren kan tot invalidatie van fabrieksgarantie leiden.</li>
-          <li>Wij geven garantie op montagewerk (flexibele periode afhankelijk van onderdeel), niet op illegale aanpassingen die schade veroorzaken.</li>
-          <li>Wij adviseren altijd een veiligheid-check (remmen, banden, vering) na tuning.</li>
-        </ul>
-
-        <h3>Checklist vóór en na tuning</h3>
-        <div class="check"><div class="dot"></div><div>Controleer olie- en koelvloeistofniveau vóór aanvang.</div></div>
-        <div class="check"><div class="dot"></div><div>Zorg voor recente onderhoudsbeurt bij twijfel (versnellingsbak, bougie, V-snaar).</div></div>
-        <div class="check"><div class="dot"></div><div>Na montage: controle op olielekkage, koeltemperatuur en loopgedrag.</div></div>
-        <div class="check"><div class="dot"></div><div>Test rit door monteur en klant (indien mogelijk) om fine-tuning uit te voeren.</div></div>
-
-        <h3>Veelgestelde vragen (FAQ)</h3>
-        <dl class="faq">
-          <dt>Is opvoeren legaal?</dt>
-          <dd>Op de openbare weg meestal niet als de max snelheid boven de toegestane limiet uitkomt. Raadpleeg lokale wetgeving en gebruik aangepaste scooters alleen op privéterrein of circuits.</dd>
-
-          <dt>Wat kost een complete performance build?</dt>
-          <dd>Een complete build (cilinderkit + uitlaat + afstelling) begint bij ongeveer €500 en kan oplopen afhankelijk van onderdelen en tuning-niveau.</dd>
-
-          <dt>Hoe lang duurt tuning?</dt>
-          <dd>Afhankelijk van werkzaamheden: van 30 minuten (simpele onderdelen) tot enkele uren/dagen voor volledige builds of dyno-afstellingen.</dd>
-
-          <dt>Blijft mijn scooter betrouwbaar?</dt>
-          <dd>Professioneel uitgevoerde tuning met juiste afstelling behoudt betrouwbaarheid; amateuristische tuning verhoogt risico's en slijtage.</dd>
-        </dl>
-
-        <p style="margin-top:14px"><strong>Wil je een offerte of advies op maat?</strong> <a href="contact.html">Neem contact</a> of klik op <button class="cta-btn" onclick="location.href='contact.html'">Maak afspraak</button></p>
-      </section>
-
-      <!-- Sidebar -->
-      <aside class="sidebar card" aria-label="Snelle info">
-        <div class="box">
-          <h4 style="margin:0 0 8px 0; color:var(--red)">Snelle info</h4>
-          <p class="muted"><strong>Locatie:</strong> Jouw Straat 123, Stad</p>
-          <p class="muted"><strong>Telefoon:</strong> +32 470 646 64</p>
-          <p class="muted"><strong>Openingstijden:</strong> Ma-Vr 09:00–18:00</p>
-          <p><a class="price" href="contact.html">Afspraak & offerte →</a></p>
-        </div>
-
-        <div class="box">
-          <h4 style="color:var(--red); margin-top:0">Aanbevolen pakket</h4>
-          <p class="muted">Performance pakket — ideale mix van vermogen en betrouwbaarheid.</p>
-          <p style="margin-top:6px"><span class="price">Vanaf €350</span></p>
-          <p style="margin-top:8px"><button class="cta-btn" onclick="location.href='contact.html'">Boek Performance</button></p>
-        </div>
-
-        <div class="box">
-          <h4 style="color:var(--red); margin-top:0">Snelle prijsindicatie</h4>
-          <p class="muted">Variateur set: <strong>€50–120</strong></p>
-          <p class="muted">Uitlaat: <strong>€100–300</strong></p>
-          <p class="muted">Cilinderkit: <strong>€150–300</strong></p>
-        </div>
-      </aside>
-    </div>
-
-  </main>
-
-  <footer>
-    <p>&copy; 2025 GPT Performance — Alle rechten voorbehouden.</p>
-    <p>
-      <a href="https://www.facebook.com/jouwfacebook" target="_blank" rel="noopener">Facebook</a> |
-      <a href="https://www.instagram.com/jouwinstagram" target="_blank" rel="noopener">Instagram</a> |
-      <a href="contact.html">Contact</a>
-    </p>
-  </footer>
+<footer>
+  <p>&copy; 2025 GPT Performance. Alle rechten voorbehouden.</p>
+  <p>
+    Volg ons op:
+    <a href="https://www.facebook.com/jouwfacebook" target="_blank"><i class="fab fa-facebook-square" style="font-size:24px;"></i></a>
+    <a href="https://www.instagram.com/jouwinstagram" target="_blank"><i class="fab fa-instagram" style="font-size:24px;"></i></a>
+  </p>
+</footer>
 
 </body>
 </html>
